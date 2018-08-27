@@ -1,16 +1,16 @@
 const fs = require('fs');
-const env = require("dotenv").config();
+// const env = require("dotenv").config();
 const weather = require('weather-js')
 const request = require('request');
 const inquirer = require('inquirer');
 const SpotifyWebApi = require('spotify-web-api-node');
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 // end of required links
-var spotifyApi = new SpotifyWebApi({
-    clientId: 'e09a2602f12d45b4b7bcc0567e0eb81a',
-    clientSecret: 'ecffddd4085e4b99b156215b61ed3441',
-    redirectUri: 'http://www.example.com/callback'
-  });
+// var spotifyApi = new SpotifyWebApi({
+//     clientId: 'e09a2602f12d45b4b7bcc0567e0eb81a',
+//     clientSecret: 'ecffddd4085e4b99b156215b61ed3441',
+//     redirectUri: 'http://www.example.com/callback'
+//   });
 // global Variables.
 var spaces = ("====================================================");
 // start of inquirer
@@ -41,7 +41,7 @@ var spaces = ("====================================================");
             break;
             case "Weather":
             // run weather api request
-            weatherCall();
+            weatherCall(user.userName);
             break;
             case "Movie Requests":
             // OMBD api request.
@@ -59,7 +59,7 @@ var spaces = ("====================================================");
   });
 // start of function making.
 // weather api call
-var weatherCall = function(location){
+var weatherCall = function(){
     inquirer.prompt([
         {
             type: "input",
@@ -72,8 +72,8 @@ var weatherCall = function(location){
                 console.log("there was an error @:" + err);
             }
             console.log(spaces);
-            console.log("ok! " + user.userName + " The weather at " + result.location + " is: ")
-            console.log(JSON.stringify(result, null, 2).current);
+            // console.log("ok! " + user.userName + " The weather at " + result.location + " is: ")
+            console.log(JSON.stringify(result, null, 2));
             console.log(spaces);
         });
     });
