@@ -33,6 +33,7 @@ var spaces = ("====================================================");
       }
   ]).then((user) => {
       console.log(user);
+       liriName = user.userName
       if(user.correctSelection === true){
           switch(user.userInput[0]){
             case "Spotify":
@@ -41,7 +42,7 @@ var spaces = ("====================================================");
             break;
             case "Weather":
             // run weather api request
-            weatherCall(user.userName);
+            weatherCall(liriName);
             break;
             case "Movie Requests":
             // OMBD api request.
@@ -64,7 +65,7 @@ var weatherCall = function(){
         {
             type: "input",
             name: "weatherLocation",
-            message: "where do you wanna know the weather at? "
+            message: ("where do you wanna know the weather at?")
         }
     ]).then((weatherInfo) => {
         weather.find({ search: weatherInfo.weatherLocation, degreeType: "F"}, function(err,result){
@@ -72,7 +73,8 @@ var weatherCall = function(){
                 console.log("there was an error @:" + err);
             }
             console.log(spaces);
-            // console.log("ok! " + user.userName + " The weather at " + result.location + " is: ")
+            // console.log("ok! " + user.userName + " The weather at " + result.location + " is: "
+            console.log(liriName);
             console.log(JSON.stringify(result, null, 2));
             console.log(spaces);
         });
