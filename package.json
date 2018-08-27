@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ad-victoriam-101/liri-node-app#readme",
   "dependencies": {
     "inquirer": "^6.2.0",
+    "node-spotify-api": "^1.0.7",
     "request": "^2.88.0",
     "spotify-web-api-node": "^3.1.1",
     "weather-js": "^2.0.0"

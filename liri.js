@@ -3,7 +3,8 @@ const fs = require('fs');
 const weather = require('weather-js')
 const request = require('request');
 const inquirer = require('inquirer');
-const SpotifyWebApi = require('spotify-web-api-node');
+
+// const SpotifyWebApi = require('spotify-web-api-node');
 // var spotify = new Spotify(keys.spotify);
 // end of required links
 // var spotifyApi = new SpotifyWebApi({
@@ -75,7 +76,7 @@ var weatherCall = function(){
             console.log(spaces);
             // console.log("ok! " + user.userName + " The weather at " + result.location + " is: "
             console.log(liriName);
-            console.log(JSON.stringify(result, null, 2));
+            console.log(JSON.stringify(result[0].current, null, 2));
             console.log(spaces);
         });
     });
