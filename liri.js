@@ -1,17 +1,14 @@
+require('dotenv').config();
 const fs = require('fs');
 // const env = require("dotenv").config();
 const weather = require('weather-js')
 const request = require('request');
 const inquirer = require('inquirer');
-
-// const SpotifyWebApi = require('spotify-web-api-node');
-// var spotify = new Spotify(keys.spotify);
+const Spotify = require("node-spotify-api");
+const keys = require('./keys.js')
+// var spotify = new Spotify(keys.spotify)
+// console.log(spotify);
 // end of required links
-// var spotifyApi = new SpotifyWebApi({
-//     clientId: 'e09a2602f12d45b4b7bcc0567e0eb81a',
-//     clientSecret: 'ecffddd4085e4b99b156215b61ed3441',
-//     redirectUri: 'http://www.example.com/callback'
-//   });
 // global Variables.
 var spaces = ("====================================================");
 // start of inquirer
@@ -123,7 +120,12 @@ var spotifyCall = function(){
             message:"Enter the band you want Spotify to look for"
         }
     ]).then((spotifyInfo) => {
-        console.log(spotifyInfo);
-
-    })
+        // console.log(spotifyInfo);
+        spotify.search({type:'track',querry:spotifyInfo.spotifySearch, limit: 10}, function(err,data){
+            if(err){
+                return console.log("Error occured: "+ err);
+            }
+            console.log(data);
+        })
+    });
 }
