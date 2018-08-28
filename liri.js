@@ -43,7 +43,7 @@ var spaces = ("====================================================");
             break;
             case "Weather":
             // run weather api request
-            weatherCall(liriName);
+            weatherCall();
             break;
             case "Movie Requests":
             // OMBD api request.
@@ -74,8 +74,7 @@ var weatherCall = function(){
                 console.log("there was an error @:" + err);
             }
             console.log(spaces);
-            // console.log("ok! " + user.userName + " The weather at " + result.location + " is: "
-            console.log(liriName);
+            console.log("Ok! " + liriName + " The weather at " + result[0].location.name + " is: ");
             console.log(JSON.stringify(result[0].current, null, 2));
             console.log(spaces);
         });
@@ -94,9 +93,10 @@ var movieCall = function(movieTitle){
         console.log(querryURL);
         request(querryURL,function(error,response,body){
             if(!error && response.statusCode === 200){
+                var test = JSON.parse(body)
                 console.log(spaces);
                 console.log('');
-                console.log("Here is the movie Info: " + JSON.parse(body));
+                console.log("Here is the movie Info "+ liriName + ":" +("\n Title: "+test.Title+"\n Rated: "+test.Rated+"\n Released: "+test.Released+"\n Plot: "+test.Plot+"\n"));
                 console.log('');
                 console.log(spaces);
             }
