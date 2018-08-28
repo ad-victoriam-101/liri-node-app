@@ -6,8 +6,8 @@ const request = require('request');
 const inquirer = require('inquirer');
 const Spotify = require("node-spotify-api");
 const keys = require('./keys.js')
-// var spotify = new Spotify(keys.spotify)
-// console.log(spotify);
+var spotify = new Spotify(keys.spotify)
+console.log(spotify);
 // end of required links
 // global Variables.
 var numEvents = 0;
