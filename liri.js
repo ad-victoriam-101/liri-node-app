@@ -128,6 +128,7 @@ var bandCall = function(){
                 var bandsEvents = JSON.parse(body)
                 for(i =0 ; i<numEvents-1; i++){
                     console.log(bandsEvents[i].venue);
+                    console.log(bandsEvents[i].datetime)
                 }
             }
         });
