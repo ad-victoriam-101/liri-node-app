@@ -10,6 +10,7 @@ const keys = require('./keys.js')
 // console.log(spotify);
 // end of required links
 // global Variables.
+var numEvents = 0;
 var spaces = ("====================================================");
 // start of inquirer
   inquirer.prompt([
@@ -108,8 +109,28 @@ var bandCall = function(){
             message: "What is the name of the band you want to see?"
         }
     ]).then((bandInfo) =>{
-        console.log(bandInfo);
-
+        var bandQuerry = "https://rest.bandsintown.com/artists/"+bandInfo.bandName+"?app_id=bcbbc86f9403493566ea30fa83505947"
+        var bandEventsUrl = "https://rest.bandsintown.com/artists/" + bandInfo.bandName+ "/events?app_id=bcbbc86f9403493566ea30fa83505947&date=2018-01-01%2C2019-12-31"
+        request(bandQuerry,function(error,response,body){
+            if(!error && response.statusCode === 200){
+                var bandsParse = JSON.parse(body)
+                numEvents = bandsParse.upcoming_event_count
+                console.log(spaces);
+                console.log("");
+                console.log(bandsParse.name);
+                console.log('__________________');
+                console.log(bandsParse.url);
+                console.log(bandsParse.name+" has " + bandsParse.upcoming_event_count + " events upcoming");
+            }
+        });
+        request(bandEventsUrl, function(error,response,body){
+            if(!error && response.statusCode === 200){
+                var bandsEvents = JSON.parse(body)
+                for(i =0 ; i<numEvents-1; i++){
+                    console.log(bandsEvents[i].venue);
+                }
+            }
+        });
     });
 }
 var spotifyCall = function(){
